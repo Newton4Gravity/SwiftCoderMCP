@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "swift-coder": {
+      "command": "/usr/local/bin/swift-coder-mcp",
+      "args": [],
+      "env": {
+        "SWIFT_CODER_TEMPLATES": "~/.swift-coder-mcp/templates",
+        "SWIFT_CODER_SNIPPETS": "~/.swift-coder-mcp/snippets",
+        "SWIFT_CODER_LOG_LEVEL": "info",
+        "SWIFT_CODER_MAX_CONCURRENT": "4"
+      }
+    }
+  }
+}
