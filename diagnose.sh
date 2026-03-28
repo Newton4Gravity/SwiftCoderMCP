@@ -26,6 +26,18 @@ check_command() {
     fi
 }
 
+# Function to check optional command without counting as an error
+check_optional_command() {
+    if command -v "$1" &> /dev/null; then
+        echo "${GREEN}✓${NC} $1: $(which $1)"
+        return 0
+    else
+        echo "${YELLOW}⚠${NC} $1 not found (optional)"
+        ((WARNINGS++))
+        return 1
+    fi
+}
+
 # Function to check version
 check_version() {
     local cmd="$1"
@@ -47,7 +59,7 @@ check_command "swift"
 check_version "swift"
 
 check_command "git"
-check_command "xcodebuild" || echo "${YELLOW}⚠${NC} xcodebuild not found (needed for some features)"
+check_optional_command "xcodebuild"
 
 echo ""
 echo "${BLUE}Checking SwiftCoderMCP:${NC}"
