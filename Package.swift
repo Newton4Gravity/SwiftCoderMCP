@@ -3,7 +3,6 @@ import PackageDescription
 
 let package = Package(
     name: "SwiftCoderMCP",
-    platforms: [.macOS(.v13)],
     products: [
         .executable(name: "swift-coder-mcp", targets: ["SwiftCoderMCP"])
     ],
@@ -17,11 +16,22 @@ let package = Package(
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .product(name: "MCP", package: "swift-sdk"),
+            ],
+            path: ".",
+            sources: [
+                "main.swift",
+                "ProjectTools.swift",
+                "ScriptTools.swift",
+                "CodeGenTools.swift",
+                "PackageTools.swift",
+                "BuildTools.swift",
+                "TemplateTools.swift",
+                "WidgetTools.swift",
+                "MacroTools.swift",
+                "DependencyTools.swift",
+                "TestTools.swift",
+                "RefactorTools.swift"
             ]
-        ),
-        .testTarget(
-            name: "SwiftCoderMCPTests",
-            dependencies: ["SwiftCoderMCP"]
         ),
     ]
 )

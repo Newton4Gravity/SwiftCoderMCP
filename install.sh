@@ -73,7 +73,7 @@ elif [ -f "$BINARY_NAME" ]; then
     echo "${BLUE}📦 Using local binary...${NC}"
     cp "$BINARY_NAME" "$INSTALL_DIR/"
 else
-    echo "${RED}❌ No binary found. Please build first with: ./Scripts/build.sh${NC}"
+    echo "${RED}❌ No binary found. Please build first with: ./build.sh${NC}"
     exit 1
 fi
 

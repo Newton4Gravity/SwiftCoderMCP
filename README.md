@@ -16,24 +16,82 @@ A comprehensive Swift Coding MCP (Model Context Protocol) Server with 50+ tools 
 
 ## 📦 Installation
 
-### Quick Install
-```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/SwiftCoderMCP/main/Scripts/install.sh | bash
-```
+### Prerequisites
 
-### Build from Source
+- Swift 5.9+ (`swift --version`)
+- Git
+- Network access for Swift Package Manager dependencies
+
+> **Raspberry Pi 4 support:** this project is designed to run on Linux ARM64 (including Raspberry Pi OS 64-bit on Pi 4) as long as a compatible Swift toolchain is installed.
+
+---
+
+### Raspberry Pi 4 (recommended flow)
+
+1. **Use a 64-bit OS image** (Raspberry Pi OS 64-bit Bookworm or Ubuntu Server 22.04/24.04 ARM64).
+2. **Install Swift** for Linux ARM64 from the official Swift download instructions:
+   - https://www.swift.org/download/
+   - Install common build dependencies first:
+     ```bash
+     sudo apt update
+     sudo apt install -y git clang libpython3-dev libncurses5 libncursesw5
+     ```
+3. **Verify toolchain**:
+   ```bash
+   swift --version
+   ```
+4. **Clone and build**:
+   ```bash
+   git clone https://github.com/<your-account>/SwiftCoderMCP.git
+   cd SwiftCoderMCP
+   ./build.sh
+   ```
+5. **Install binary**:
+   ```bash
+   sudo cp .build/release/swift-coder-mcp /usr/local/bin/
+   ```
+6. **Run diagnostics**:
+   ```bash
+   ./diagnose.sh
+   swift-coder-mcp --version
+   ```
+
+---
+
+### macOS / Linux build from source
+
 ```bash
-git clone https://github.com/yourusername/SwiftCoderMCP.git
+git clone https://github.com/<your-account>/SwiftCoderMCP.git
 cd SwiftCoderMCP
-./Scripts/build.sh
+./build.sh
 sudo cp .build/release/swift-coder-mcp /usr/local/bin/
 ```
 
-### Verify Installation
+### Optional installer script
+
+Install from the repository root:
+
 ```bash
-swift-coder-mcp --version
-./Scripts/diagnose.sh
+./install.sh
 ```
+
+Or force a rebuild during install:
+
+```bash
+./install.sh --build
+```
+
+### Troubleshooting tips for Pi 4
+
+- If build memory is tight, reduce parallelism:
+  ```bash
+  swift build -c release -j 2
+  ```
+- Ensure your shell can find Swift (`which swift`) and the installed binary (`which swift-coder-mcp`).
+- If dependencies fail to resolve, re-run:
+  ```bash
+  swift package resolve
+  ```
 
 ## 🛠️ Available Tools (50+)
 
@@ -209,10 +267,10 @@ Add to `.cursor/mcp.json`:
 
 ## 📚 Documentation
 
-- [Installation Guide](Documentation/INSTALLATION_GUIDE.md)
-- [Quick Start](Documentation/QUICKSTART.md)
-- [API Reference](Documentation/API_REFERENCE.md)
-- [Examples](Documentation/EXAMPLES.md)
+- [Installation Guide](INSTALLATION_GUIDE.md)
+- [Quick Start](QUICKSTART.md)
+- [API Reference](API_REFERENCE.md)
+- [Examples](EXAMPLES.md)
 
 ## 🤝 Contributing
 
